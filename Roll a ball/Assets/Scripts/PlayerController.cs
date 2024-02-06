@@ -7,21 +7,16 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera mainCam;
     public float speed = 0;
     private Rigidbody rb;
-    private int count;
     private float movementX;
     private float movementY;
-    public TextMeshProUGUI countText;
-    public GameObject winTextObject;
-    public int PickUpAmount;
-    [HideInInspector]public Boolean allCollected = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        count = 0;
-        SetCountText();
-        winTextObject.SetActive(false);
+
     }
     
     void OnMove(InputValue movementValue)
@@ -33,28 +28,18 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        rb.AddForce(movement*speed);
+        Vector3 forward = mainCam.transform.forward;
+        forward.y = 0f;
+        Vector3 right = mainCam.transform.right;
+        right.y = 0f;
+
+        // Normalize to make length one, and combine with user input
+        Vector3 movement = forward.normalized * movementY + right.normalized * movementX;
+        rb.AddForce(movement * speed);
+
+
     }
+
     
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("PickUp"))
-        {
-            other.gameObject.SetActive(false);
-            count++;
-            SetCountText();
-        }
-    }
-    
-    void SetCountText()
-    {
-        countText.text = "Count: " + count.ToString();
-        if (count >= PickUpAmount)
-        {
-            allCollected = true;
-            winTextObject.SetActive(true);
-        }
-    }
     
 }
