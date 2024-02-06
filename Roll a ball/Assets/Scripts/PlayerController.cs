@@ -37,6 +37,10 @@ public class PlayerController : MonoBehaviour
         // Normalize to make length one, and combine with user input
         Vector3 movement = forward.normalized * movementY + right.normalized * movementX;
         rb.AddForce(movement * speed);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+        }
 
 
     }
