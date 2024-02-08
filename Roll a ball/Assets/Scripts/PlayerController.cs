@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
+    public float jumpHeight;
 
     void Start()
     {
@@ -37,14 +38,18 @@ public class PlayerController : MonoBehaviour
         // Normalize to make length one, and combine with user input
         Vector3 movement = forward.normalized * movementY + right.normalized * movementX;
         rb.AddForce(movement * speed);
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        }
-
-
     }
 
-    
-    
+    void Update()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity = rb.velocity / 2f;
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+        }
+    }
+
+
+
 }

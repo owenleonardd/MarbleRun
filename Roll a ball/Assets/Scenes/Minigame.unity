@@ -4057,6 +4057,11 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 961739752}
+    - target: {fileID: 7893494414417282692, guid: 146c23b99ad5e6a44be2c3167f1597bf,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7893494414417282694, guid: 146c23b99ad5e6a44be2c3167f1597bf,
         type: 3}
       propertyPath: m_RootOrder
