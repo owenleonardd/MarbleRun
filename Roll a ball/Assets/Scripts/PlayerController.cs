@@ -44,9 +44,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            rb.velocity = rb.velocity / 2f;
+           rb.velocity = rb.velocity / 2f;
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
         if (Input.GetKeyDown(KeyCode.R))
@@ -54,6 +54,19 @@ public class PlayerController : MonoBehaviour
             transform.position = respawn;
             rb.velocity = Vector3.zero;
         }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Checkpoint"))
+        {
+            respawn = other.transform.position;
+        }
+    }
+    
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 0.7f);
     }
 
 
