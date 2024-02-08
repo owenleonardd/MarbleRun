@@ -6,7 +6,7 @@ public class PlatformMover : MonoBehaviour
 {
     public float speed = 1.0f;
 
-    public float targetX, targetY, targetZ;
+    public float xOffset, yOffset, zOffset;
     private Vector3 startPosition;
 
     private Vector3 targetPosition;
@@ -14,7 +14,7 @@ public class PlatformMover : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        targetPosition = new Vector3(targetX, targetY, targetZ);
+targetPosition = new Vector3(startPosition.x + xOffset, startPosition.y + yOffset, startPosition.z + zOffset);
         
     }
     
