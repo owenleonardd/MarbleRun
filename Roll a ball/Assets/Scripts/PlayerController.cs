@@ -13,13 +13,14 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     public float jumpHeight;
+    private Vector3 respawn;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
-
-    }
+        respawn = transform.position;
+    }   
     
     void OnMove(InputValue movementValue)
     {
@@ -47,6 +48,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = rb.velocity / 2f;
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = respawn;
+            rb.velocity = Vector3.zero;
         }
     }
 
