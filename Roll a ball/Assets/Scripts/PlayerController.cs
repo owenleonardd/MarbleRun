@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
            rb.velocity = rb.velocity / 2f;
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+           rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -60,7 +60,9 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Checkpoint"))
         {
+            Debug.Log("checkpoint");
             respawn = other.transform.position;
+            respawn = new Vector3(respawn.x, respawn.y + 1, respawn.z);
         }
     }
     
