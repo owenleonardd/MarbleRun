@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = respawn;
             rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
     }
     
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("checkpoint");
             respawn = other.transform.position;
-            respawn = new Vector3(respawn.x, respawn.y + 1, respawn.z);
+            respawn = new Vector3(respawn.x+1, respawn.y + 1.1f, respawn.z+1);
         }
     }
     
